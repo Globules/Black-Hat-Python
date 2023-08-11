@@ -1,0 +1,21 @@
+import socket
+
+target_host = "TARGET"
+target_port = "80"
+
+# create  a socket object : create a socket object with AF_INET and SOCK_STREAM parameteres
+# AF_INT = standard IPv4 adress or hostanme / SOCK_STREAM = Indicate TCP client
+client  = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+
+#connect the client to the server
+client.connect((target_host,target_port))
+
+#send data as bytes
+client send (b"GET / HTTP/1.1\R\nHost: target_host\r\n\r\n")
+
+#receive date
+response = client.recv(4096)
+
+print(response.decode())
+client.close()
